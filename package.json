@@ -1,0 +1,10 @@
+{
+  "name": "next-yandex-third-parties",
+  "version": "0.0.0",
+  "description": "Yandex integrations for Next.js. Such as Yandex Metrika",
+  "main": "dist/index.js",
+  "repository": "https://github.com/Lequeston/next-yandex-third-parties.git",
+  "author": "Logachev Kirill Aleksandrovich <KALogachev@yandex.ru>",
+  "license": "MIT",
+  "private": false
+}
