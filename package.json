@@ -1,8 +1,12 @@
 {
   "name": "next-yandex-third-parties",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Yandex integrations for Next.js. Such as Yandex Metrika",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Lequeston/next-yandex-third-parties.git"
@@ -15,9 +19,19 @@
     "compile": "gulp compile",
     "clean": "gulp clean",
     "watch": "gulp watch",
+    "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "next",
+    "nextjs",
+    "yandex",
+    "metrika",
+    "analytics",
+    "tracking",
+    "react",
+    "typescript"
+  ],
   "bugs": {
     "url": "https://github.com/Lequeston/next-yandex-third-parties/issues"
   },
@@ -25,14 +39,12 @@
   "devDependencies": {
     "@types/node": "^24.5.2",
     "@types/react": "^19.1.13",
+    "del": "^8.0.1",
     "gulp": "^5.0.1",
     "gulp-typescript": "^6.0.0-alpha.1",
     "typescript": "^5.9.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
-  },
-  "dependencies": {
-    "del": "^8.0.1"
   },
   "peerDependencies": {
     "next": "^13.0.0 || ^14.0.0 || ^15.0.0",
