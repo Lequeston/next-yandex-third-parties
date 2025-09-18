@@ -1,0 +1,12 @@
+# dependencies
+node_modules
+
+# build
+dist
+
+# coverage
+coverage
+
+# misc
+.DS_Store
+.idea
