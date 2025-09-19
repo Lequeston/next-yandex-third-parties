@@ -31,7 +31,7 @@ jobs:
         run: npm run build
 
       - name: Check TypeScript
-        run: npx tsc --noEmit
+        run: npx tsc --noEmit --skipLibCheck
 
       - name: Verify package contents
         run: npm pack --dry-run

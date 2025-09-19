@@ -7,8 +7,8 @@ const tsProjectDeclarations = ts.createProject('tsconfig.json', {
   emitDeclarationOnly: true
 });
 
-task('clean', function() {
-  const { deleteAsync } = require('del');
+task('clean', async function() {
+  const { deleteAsync } = await import('del');
   return deleteAsync(['dist']);
 });
 
