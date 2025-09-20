@@ -1,1 +1,8 @@
-export { YandexMetrika, sendYAEvent, userParams, setUserID, reachGoal, notBounce } from './YandexMetrika';
+export {
+  YandexMetrika,
+  sendYAEvent,
+  userParams,
+  setUserID,
+  reachGoal,
+  notBounce,
+} from './YandexMetrika';

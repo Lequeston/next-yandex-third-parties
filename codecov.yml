@@ -4,7 +4,7 @@ codecov:
 coverage:
   precision: 2
   round: down
-  range: "70...100"
+  range: '70...100'
 
   status:
     project:
@@ -25,14 +25,14 @@ parsers:
       macro: no
 
 comment:
-  layout: "reach,diff,flags,files,footer"
+  layout: 'reach,diff,flags,files,footer'
   behavior: default
   require_changes: no
 
 ignore:
-  - "**/*.test.tsx"
-  - "**/*.test.ts"
-  - "**/__tests__/**"
-  - "**/jest.config.js"
-  - "**/jest.setup.js"
-  - "**/__mocks__/**"
+  - '**/*.test.tsx'
+  - '**/*.test.ts'
+  - '**/__tests__/**'
+  - '**/jest.config.js'
+  - '**/jest.setup.js'
+  - '**/__mocks__/**'

@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import React, { useEffect } from 'react'
-import { YAParams } from './types/yandexMetrika'
+import React, { useEffect } from 'react';
+import { YAParams } from './types/yandexMetrika';
 import Script from 'next/script';
 import { EventParameters } from './types/events';
 import { YM } from './types/ym';
@@ -20,7 +20,7 @@ export function YandexMetrika(props: YAParams) {
   const { tagId, initParameters, scriptSrc = 'https://mc.yandex.ru/metrika/tag.js' } = props;
 
   if (currTagId === undefined) {
-      currTagId = tagId;
+    currTagId = tagId;
   }
 
   useEffect(() => {
@@ -33,14 +33,15 @@ export function YandexMetrika(props: YAParams) {
       detail: {
         feature: 'next-yandex-third-parties',
       },
-    })
+    });
   }, []);
 
   return (
-    <><Script
-      id="_next-yandex-metrica-init"
-      dangerouslySetInnerHTML={{
-        __html: `
+    <>
+      <Script
+        id="_next-yandex-metrica-init"
+        dangerouslySetInnerHTML={{
+          __html: `
           (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
           m[i].l=1*new Date();
           for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
@@ -49,19 +50,22 @@ export function YandexMetrika(props: YAParams) {
 
           ym(${tagId}, "init", ${JSON.stringify(initParameters || {})});
         `,
-      }} /><noscript
+        }}
+      />
+      <noscript
         id="_next-yandex-metrica-pixel"
-        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{
           __html: `<div><img src="https://mc.yandex.ru/watch/${tagId}" style="position:absolute; left:-9999px;" alt="" /></div>`,
-        }} /></>
-  )
+        }}
+      />
+    </>
+  );
 }
 
 export function sendYAEvent(...params: EventParameters) {
   if (currTagId === undefined) {
-    console.warn(`next-yandex-third-parties: Yandex Metrika has not been initialized`)
-    return
+    console.warn(`next-yandex-third-parties: Yandex Metrika has not been initialized`);
+    return;
   }
 
   const ym = window.ym;

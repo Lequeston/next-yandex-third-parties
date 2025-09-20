@@ -1,6 +1,13 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { YandexMetrika, sendYAEvent, userParams, setUserID, reachGoal, notBounce } from './YandexMetrika';
+import {
+  YandexMetrika,
+  sendYAEvent,
+  userParams,
+  setUserID,
+  reachGoal,
+  notBounce,
+} from './YandexMetrika';
 import '@testing-library/jest-dom';
 
 describe('YandexMetrika', () => {
@@ -21,9 +28,7 @@ describe('YandexMetrika', () => {
 
   describe('YandexMetrika Component', () => {
     it('should render with required props', () => {
-      const { container } = render(
-        <YandexMetrika tagId={12345678} />
-      );
+      const { container } = render(<YandexMetrika tagId={12345678} />);
 
       // Check that script element is rendered
       const script = container.querySelector('script#_next-yandex-metrica-init');
@@ -36,9 +41,7 @@ describe('YandexMetrika', () => {
 
     it('should include tagId in script content', () => {
       const tagId = 87654321;
-      const { container } = render(
-        <YandexMetrika tagId={tagId} />
-      );
+      const { container } = render(<YandexMetrika tagId={tagId} />);
 
       const script = container.querySelector('script#_next-yandex-metrica-init');
       expect(script?.innerHTML).toContain(`ym(${tagId}, "init"`);
@@ -46,9 +49,7 @@ describe('YandexMetrika', () => {
 
     it('should include custom scriptSrc when provided', () => {
       const customSrc = 'https://custom-domain.com/metrika.js';
-      const { container } = render(
-        <YandexMetrika tagId={12345678} scriptSrc={customSrc} />
-      );
+      const { container } = render(<YandexMetrika tagId={12345678} scriptSrc={customSrc} />);
 
       const script = container.querySelector('script#_next-yandex-metrica-init');
       expect(script?.innerHTML).toContain(customSrc);
@@ -62,27 +63,21 @@ describe('YandexMetrika', () => {
         webvisor: true,
       };
 
-      const { container } = render(
-        <YandexMetrika tagId={12345678} initParameters={initParams} />
-      );
+      const { container } = render(<YandexMetrika tagId={12345678} initParameters={initParams} />);
 
       const script = container.querySelector('script#_next-yandex-metrica-init');
       expect(script?.innerHTML).toContain(JSON.stringify(initParams));
     });
 
     it('should use default script src when not provided', () => {
-      const { container } = render(
-        <YandexMetrika tagId={12345678} />
-      );
+      const { container } = render(<YandexMetrika tagId={12345678} />);
 
       const script = container.querySelector('script#_next-yandex-metrica-init');
       expect(script?.innerHTML).toContain('https://mc.yandex.ru/metrika/tag.js');
     });
 
     it('should include empty init parameters when not provided', () => {
-      const { container } = render(
-        <YandexMetrika tagId={12345678} />
-      );
+      const { container } = render(<YandexMetrika tagId={12345678} />);
 
       const script = container.querySelector('script#_next-yandex-metrica-init');
       expect(script?.innerHTML).toContain('"init", {}');
@@ -102,9 +97,7 @@ describe('YandexMetrika', () => {
 
     it('should include noscript fallback with correct tagId', () => {
       const tagId = 99999999;
-      const { container } = render(
-        <YandexMetrika tagId={tagId} />
-      );
+      const { container } = render(<YandexMetrika tagId={tagId} />);
 
       const noscript = container.querySelector('noscript#_next-yandex-metrica-pixel');
       expect(noscript?.innerHTML).toContain(`https://mc.yandex.ru/watch/${tagId}`);
@@ -175,7 +168,13 @@ describe('YandexMetrika', () => {
 
         reachGoal('purchase');
 
-        expect(mockYm).toHaveBeenCalledWith(12345678, 'reachGoal', 'purchase', undefined, undefined);
+        expect(mockYm).toHaveBeenCalledWith(
+          12345678,
+          'reachGoal',
+          'purchase',
+          undefined,
+          undefined
+        );
       });
 
       it('should call sendYAEvent with reachGoal, target, and params', () => {
@@ -253,5 +252,4 @@ describe('YandexMetrika - Isolated Tests', () => {
       );
     });
   });
-
 });

@@ -18,7 +18,7 @@ describe('index', () => {
       'userParams',
       'setUserID',
       'reachGoal',
-      'notBounce'
+      'notBounce',
     ];
 
     expectedExports.forEach(exportName => {

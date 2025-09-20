@@ -24,13 +24,9 @@ pnpm add next-yandex-third-parties
 Add the `YandexMetrika` component to your root layout or `_app.tsx`:
 
 ```tsx
-import { YandexMetrika } from 'next-yandex-third-parties'
+import { YandexMetrika } from 'next-yandex-third-parties';
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
@@ -41,33 +37,33 @@ export default function RootLayout({
             clickmap: true,
             trackLinks: true,
             accurateTrackBounce: true,
-            webvisor: true
+            webvisor: true,
           }}
         />
       </body>
     </html>
-  )
+  );
 }
 ```
 
 ### 2. Track custom events
 
 ```tsx
-import { sendYAEvent, reachGoal, userParams } from 'next-yandex-third-parties'
+import { sendYAEvent, reachGoal, userParams } from 'next-yandex-third-parties';
 
 function MyComponent() {
   const handleClick = () => {
     // Track a custom event
-    sendYAEvent('hit', '/virtual-page')
+    sendYAEvent('hit', '/virtual-page');
 
     // Track a goal
-    reachGoal('button_click', { user_type: 'premium' })
+    reachGoal('button_click', { user_type: 'premium' });
 
     // Set user parameters
-    userParams({ user_id: '12345', subscription: 'premium' })
-  }
+    userParams({ user_id: '12345', subscription: 'premium' });
+  };
 
-  return <button onClick={handleClick}>Track Event</button>
+  return <button onClick={handleClick}>Track Event</button>;
 }
 ```
 
@@ -79,30 +75,30 @@ Main component for initializing Yandex Metrika tracking.
 
 ```tsx
 <YandexMetrika
-  tagId={number}           // Required: Your Yandex Metrika counter ID
-  initParameters={object}  // Optional: Initialization parameters
-  scriptSrc={string}       // Optional: Custom script source URL
+  tagId={number} // Required: Your Yandex Metrika counter ID
+  initParameters={object} // Optional: Initialization parameters
+  scriptSrc={string} // Optional: Custom script source URL
 />
 ```
 
 #### Props
 
-| Prop | Type | Required | Description |
-|------|------|----------|-------------|
-| `tagId` | `number` | Yes | Your Yandex Metrika counter ID |
-| `initParameters` | `InitParameters` | No | Counter initialization parameters |
-| `scriptSrc` | `string` | No | Custom Yandex Metrika script URL (default: `https://mc.yandex.ru/metrika/tag.js`) |
+| Prop             | Type             | Required | Description                                                                       |
+| ---------------- | ---------------- | -------- | --------------------------------------------------------------------------------- |
+| `tagId`          | `number`         | Yes      | Your Yandex Metrika counter ID                                                    |
+| `initParameters` | `InitParameters` | No       | Counter initialization parameters                                                 |
+| `scriptSrc`      | `string`         | No       | Custom Yandex Metrika script URL (default: `https://mc.yandex.ru/metrika/tag.js`) |
 
 #### InitParameters
 
 ```tsx
 interface InitParameters {
-  clickmap?: boolean              // Click map tracking
-  trackLinks?: boolean           // Track external links
-  accurateTrackBounce?: boolean  // Accurate bounce rate
-  webvisor?: boolean            // Session recordings
-  trackHash?: boolean           // Track hash changes
-  ecommerce?: boolean | string  // E-commerce tracking
+  clickmap?: boolean; // Click map tracking
+  trackLinks?: boolean; // Track external links
+  accurateTrackBounce?: boolean; // Accurate bounce rate
+  webvisor?: boolean; // Session recordings
+  trackHash?: boolean; // Track hash changes
+  ecommerce?: boolean | string; // E-commerce tracking
   // ... and more
 }
 ```
@@ -114,9 +110,9 @@ interface InitParameters {
 Send custom events to Yandex Metrika:
 
 ```tsx
-sendYAEvent('hit', url, options)
-sendYAEvent('reachGoal', goalName, params, callback)
-sendYAEvent('userParams', params)
+sendYAEvent('hit', url, options);
+sendYAEvent('reachGoal', goalName, params, callback);
+sendYAEvent('userParams', params);
 // ... any other Yandex Metrika method
 ```
 
@@ -125,11 +121,11 @@ sendYAEvent('userParams', params)
 Track goal completion:
 
 ```tsx
-reachGoal('goal_name')
-reachGoal('goal_name', { param1: 'value1' })
+reachGoal('goal_name');
+reachGoal('goal_name', { param1: 'value1' });
 reachGoal('goal_name', { param1: 'value1' }, () => {
-  console.log('Goal tracked!')
-})
+  console.log('Goal tracked!');
+});
 ```
 
 #### userParams()
@@ -140,8 +136,8 @@ Set user parameters:
 userParams({
   user_id: '12345',
   user_type: 'premium',
-  age: 30
-})
+  age: 30,
+});
 ```
 
 #### setUserID()
@@ -149,7 +145,7 @@ userParams({
 Set user ID:
 
 ```tsx
-setUserID('user123')
+setUserID('user123');
 ```
 
 #### notBounce()
@@ -157,8 +153,8 @@ setUserID('user123')
 Mark session as non-bounce:
 
 ```tsx
-notBounce()
-notBounce({ callback: () => console.log('Not bounce tracked') })
+notBounce();
+notBounce({ callback: () => console.log('Not bounce tracked') });
 ```
 
 ## Examples
@@ -166,54 +162,54 @@ notBounce({ callback: () => console.log('Not bounce tracked') })
 ### E-commerce Tracking
 
 ```tsx
-import { sendYAEvent } from 'next-yandex-third-parties'
+import { sendYAEvent } from 'next-yandex-third-parties';
 
 // Track purchase
 sendYAEvent('reachGoal', 'purchase', {
   order_id: '12345',
   revenue: 99.99,
-  currency: 'USD'
-})
+  currency: 'USD',
+});
 
 // Track product view
 sendYAEvent('hit', '/product/123', {
   product_id: '123',
   product_name: 'Cool Product',
-  category: 'Electronics'
-})
+  category: 'Electronics',
+});
 ```
 
 ### Page View Tracking
 
 ```tsx
-import { useEffect } from 'react'
-import { sendYAEvent } from 'next-yandex-third-parties'
+import { useEffect } from 'react';
+import { sendYAEvent } from 'next-yandex-third-parties';
 
 function MyPage() {
   useEffect(() => {
-    sendYAEvent('hit', window.location.pathname)
-  }, [])
+    sendYAEvent('hit', window.location.pathname);
+  }, []);
 
-  return <div>My Page Content</div>
+  return <div>My Page Content</div>;
 }
 ```
 
 ### Custom User Tracking
 
 ```tsx
-import { userParams, setUserID } from 'next-yandex-third-parties'
+import { userParams, setUserID } from 'next-yandex-third-parties';
 
 function UserProfile({ user }) {
   useEffect(() => {
-    setUserID(user.id)
+    setUserID(user.id);
     userParams({
       user_type: user.subscription,
       registration_date: user.createdAt,
-      total_orders: user.ordersCount
-    })
-  }, [user])
+      total_orders: user.ordersCount,
+    });
+  }, [user]);
 
-  return <div>User Profile</div>
+  return <div>User Profile</div>;
 }
 ```
 
@@ -266,6 +262,9 @@ npm run clean
 - `npm test` - Run tests with Jest
 - `npm run test:watch` - Run tests in watch mode
 - `npm run test:coverage` - Run tests with coverage report
+- `npm run lint` - Run ESLint to check code quality and formatting
+- `npm run lint:fix` - Run ESLint and automatically fix issues and formatting
+- `npm run typecheck` - Run TypeScript type checking
 
 ### Testing
 

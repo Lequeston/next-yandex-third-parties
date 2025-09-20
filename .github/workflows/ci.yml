@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
   pull_request:
-    branches: [ main, master ]
+    branches: [main, master]
 
 jobs:
   test:
@@ -30,8 +30,11 @@ jobs:
       - name: Build project
         run: npm run build
 
+      - name: Lint code and check formatting
+        run: npm run lint
+
       - name: Check TypeScript
-        run: npx tsc --noEmit --skipLibCheck
+        run: npm run typecheck
 
       - name: Verify package contents
         run: npm pack --dry-run
