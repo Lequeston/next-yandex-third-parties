@@ -1,6 +1,9 @@
 # Next.js Yandex Third Parties
 
+***English** | [Русский](README.ru.md)*
+
 [![codecov](https://codecov.io/gh/Lequeston/next-yandex-third-parties/graph/badge.svg)](https://codecov.io/gh/Lequeston/next-yandex-third-parties)
+[![Tests](https://github.com/Lequeston/next-yandex-third-parties/actions/workflows/test.yml/badge.svg)](https://github.com/Lequeston/next-yandex-third-parties/actions/workflows/test.yml)
 [![CI](https://github.com/Lequeston/next-yandex-third-parties/actions/workflows/ci.yml/badge.svg)](https://github.com/Lequeston/next-yandex-third-parties/actions/workflows/ci.yml)
 [![npm version](https://badge.fury.io/js/next-yandex-third-parties.svg)](https://badge.fury.io/js/next-yandex-third-parties)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
