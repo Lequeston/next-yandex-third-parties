@@ -1,5 +1,6 @@
 const { task, series, parallel, watch, src, dest } = require('gulp');
 const ts = require('gulp-typescript');
+const terser = require('gulp-terser');
 
 const tsProject = ts.createProject('tsconfig.json');
 const tsProjectDeclarations = ts.createProject('tsconfig.json', {
@@ -13,7 +14,18 @@ task('clean', async function () {
 });
 
 task('compile:typescript', function () {
-  return tsProject.src().pipe(tsProject()).js.pipe(dest('dist'));
+  return tsProject.src()
+    .pipe(tsProject())
+    .js
+    .pipe(terser({
+      compress: false,
+      mangle: false,
+      format: {
+        beautify: false,
+        comments: false,
+      },
+    }))
+    .pipe(dest('dist'));
 });
 
 task('copy:declarations', function () {
